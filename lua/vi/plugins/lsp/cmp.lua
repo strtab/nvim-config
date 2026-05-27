@@ -13,9 +13,7 @@ return {
 			-- used to enable autocompletion (assign to every lsp server config)
 			local capabilities = cmp_nvim_lsp.default_capabilities()
 
-			vim.lsp.config("*", {
-				capabilities = capabilities,
-			})
+			vim.lsp.config("*", { capabilities = capabilities })
 		end,
 	},
 	{
@@ -23,11 +21,10 @@ return {
 		enabled = true,
 		event = "InsertEnter",
 		dependencies = {
-			"hrsh7th/cmp-buffer", -- source for text in buffer
-			"hrsh7th/cmp-path", -- source for file system paths
-			"hrsh7th/cmp-vsnip",
-			"hrsh7th/cmp-nvim-lsp",
-			"hrsh7th/vim-vsnip",
+			"hrsh7th/cmp-buffer", -- Source for text in buffer
+			"hrsh7th/cmp-path", -- Source for file system paths
+			"hrsh7th/cmp-nvim-lsp", -- Lsp
+			"ray-x/cmp-treesitter", -- Treesitter
 			"saadparwaiz1/cmp_luasnip",
 			"rafamadriz/friendly-snippets",
 			{
@@ -42,41 +39,104 @@ return {
 			local luasnip = require("luasnip")
 
 			-- sources for autocompletion
-			local sources_ = {
+			local default_cmp_sources = {
 				{ name = "nvim_lsp" },
 				{ name = "luasnip" },
-				{ name = "vsnip" },
 				{ name = "buffer" },
 				{ name = "path" },
 				{ name = "spell" },
 			}
 
 			if package.loaded["nvim-highlight-colors"] then
-				table.insert(sources_, 1, { name = "nvim-highlight-colors" })
+				table.insert(default_cmp_sources, 1, { name = "nvim-highlight-colors" })
+			end
+
+			local bufIsBig = function(bufnr)
+				local max_filesize = 100 * 1024 -- 100 KB
+				local ok, stats = pcall(vim.uv.fs_stat, vim.api.nvim_buf_get_name(bufnr))
+				if ok and stats and stats.size > max_filesize then
+					return true
+				else
+					return false
+				end
+			end
+
+			vim.api.nvim_create_autocmd("BufReadPre", {
+				callback = function(t)
+					local sources = vim.deepcopy(default_cmp_sources)
+					if not bufIsBig(t.buf) then
+						sources[#sources + 1] = { name = "treesitter", group_index = 2 }
+					end
+					cmp.setup.buffer({ sources = sources })
+				end,
+			})
+
+			-- fucntions for keymaps
+			local has_words_before = function()
+				unpack = unpack or table.unpack
+				local line, col = unpack(vim.api.nvim_win_get_cursor(0))
+				if col == 0 then
+					return false
+				end
+				return vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(1, col):match("%S") ~= nil
 			end
 
 			cmp.setup({
+				enabled = function()
+					local disabled = false
+					disabled = disabled or (vim.api.nvim_get_option_value("buftype", { buf = 0 }) == "prompt")
+					disabled = disabled or (vim.fn.reg_recording() ~= "")
+					disabled = disabled or (vim.fn.reg_executing() ~= "")
+					disabled = disabled or require("cmp.config.context").in_treesitter_capture("comment")
+					return not disabled
+				end,
 				completion = { completeopt = "menu,menuone,preview,noselect" },
 
 				snippet = { -- configure how nvim-cmp interacts with snippet engine
 					expand = function(args)
 						luasnip.lsp_expand(args.body)
-						vim.fn["vsnip#anonymous"](args.body)
 					end,
 				},
 
 				mapping = cmp.mapping.preset.insert({
-					-- ["<C-p>"] = cmp.mapping.select_prev_item(),
-					-- ["<C-m>"] = cmp.mapping.select_next_item(),
 					["<C-u>"] = cmp.mapping.scroll_docs(-1),
 					["<C-d>"] = cmp.mapping.scroll_docs(1),
-					-- ["<C-n>"] = cmp.mapping.complete(),
 					["<C-e>"] = cmp.mapping.abort(),
-					["<C-c>"] = cmp.mapping.confirm({ select = true }),
+					["<CR>"] = cmp.mapping(function(fallback)
+						if has_words_before() and cmp.visible() then
+							if luasnip.expandable() then
+								luasnip.expand()
+							else
+								cmp.confirm({ select = true })
+							end
+						else
+							fallback()
+						end
+					end),
+
+					["<Tab>"] = cmp.mapping(function(fallback)
+						if has_words_before() and cmp.visible() then
+							if luasnip.expandable() then
+								luasnip.expand()
+							else
+								cmp.confirm({ select = true })
+							end
+						else
+							fallback()
+						end
+					end),
 				}),
+				experimental = { ghost_text = true },
 
 				-- sources for autocompletion
-				sources = cmp.config.sources(sources_),
+				sources = cmp.config.sources(default_cmp_sources),
+
+				-- window = {
+				-- 	completion = cmp.config.window.bordered(),
+				-- 	documentation = cmp.config.window.bordered({
+				-- 		winhighlight = "Normal:Pmenu,FloatBorder:Pmenu,CursorLine:PmenuSel,Search:None",
+				-- 	}),
+				-- },
 			})
 		end,
 	},

@@ -1,61 +1,62 @@
 local g = {
-  bg = nil,
-  bg_alt = "#080808",
-  bg_alt2 = "#121212",
-  fg = "#a59a84",
+	bg = nil,
+	bg_alt = "#080808",
+	bg_alt2 = "#121212",
+	fg = "#a59a84",
 
-  dim1 = "#1c1c1c",
-  dim2 = "#303030",
+	dim1 = "#1c1c1c",
+	dim2 = "#303030",
 
-  black = "#1a1b19",
-  red = "#af4b00",
-  green = "#919922",
-  yellow = "#ca9f1d",
-  blue = "#46867e",
-  mag = "#b8616a",
-  cyan = "#6c9d66",
-  br_black = "#8f8473",
-  br_red = "#e16600",
-  br_yellow = "#ecc330",
-  br_blue = "#85a593",
-  br_mag = "#d88681",
-  br_white = "#d4be98",
+	black = "#1a1b19",
+	red = "#af4b00",
+	green = "#919922",
+	yellow = "#ca9f1d",
+	blue = "#46867e",
+	mag = "#b8616a",
+	cyan = "#6c9d66",
+	br_green = "#AFBC33",
+	br_black = "#8f8473",
+	orange = "#e16600",
+	br_yellow = "#ecc330",
+	br_blue = "#85a593",
+	br_mag = "#d88681",
+	br_white = "#d4be98",
 
-  git_add = "#87af00",
-  git_mod = "#ffd75f",
-  git_del = "#d70000",
+	git_add = "#87af00",
+	git_mod = "#ffd75f",
+	git_del = "#d70000",
 }
 
 local t = {
-  bg = nil,
-  bg_alt = 232,
-  fg = 7,
+	bg = nil,
+	bg_alt = 232,
+	fg = 7,
 
-  dim1 = 234,
-  dim2 = 236,
+	dim1 = 234,
+	dim2 = 236,
 
-  black = 0,
-  red = 1,
-  green = 2,
-  yellow = 3,
-  blue = 4,
-  mag = 5,
-  cyan = 6,
-  br_black = 8,
-  br_red = 9,
-  br_green = 10,
-  br_yellow = 11,
-  br_blue = 12,
-  br_mag = 13,
-  br_white = 15,
+	black = 0,
+	red = 1,
+	green = 2,
+	yellow = 3,
+	blue = 4,
+	mag = 5,
+	cyan = 6,
+	br_black = 8,
+	orange = 9,
+	br_green = 10,
+	br_yellow = 11,
+	br_blue = 12,
+	br_mag = 13,
+	br_white = 15,
 
-  git_add = 106,
-  git_mod = 221,
-  git_del = 160,
+	git_add = 106,
+	git_mod = 221,
+	git_del = 160,
 }
 
 local hl = function(name, val)
-  vim.api.nvim_set_hl(0, name, val)
+	vim.api.nvim_set_hl(0, name, val)
 end
 
 hl("Normal", { bg = g.bg, fg = g.fg, ctermbg = t.bg, ctermfg = t.fg })
@@ -106,12 +107,12 @@ hl("String", { fg = g.green, ctermfg = t.green })
 hl("Comment", { fg = g.br_black, ctermfg = t.br_black, italic = true })
 hl("Operator", { fg = g.fg, ctermfg = t.fg })
 hl("Special", { fg = g.fg, ctermfg = t.fg })
-hl("Delimiter", { fg = g.yellow, ctermfg = t.yellow })
+hl("Delimiter", { fg = g.orange, ctermfg = t.orange })
 hl("@variable", { fg = g.br_white, ctermfg = t.br_white })
 hl("Identifier", { fg = g.blue, ctermfg = t.blue })
 hl("Statement", { fg = g.mag, ctermfg = t.mag })
 hl("Keyword", { fg = g.mag, ctermfg = t.br_mag, bold = true })
-hl("Function", { fg = g.cyan, ctermfg = t.cyan })
+hl("Function", { fg = g.yellow, ctermfg = t.yellow })
 hl("Type", { fg = g.yellow, ctermfg = t.yellow })
 hl("Number", { fg = g.fg, ctermfg = t.fg })
 hl("Constant", { fg = g.blue, ctermfg = t.blue })
@@ -141,7 +142,7 @@ hl("MiniIconsBlue", { fg = g.br_blue, ctermfg = t.br_blue })
 hl("MiniIconsCyan", { fg = g.cyan, ctermfg = t.cyan })
 hl("MiniIconsGreen", { fg = g.br_green, ctermfg = t.br_green })
 hl("MiniIconsGrey", { fg = g.br_black, ctermfg = t.br_black })
-hl("MiniIconsOrange", { fg = g.br_red, ctermfg = t.br_red })
+hl("MiniIconsOrange", { fg = g.orange, ctermfg = t.orange })
 hl("MiniIconsPurple", { fg = g.mag, ctermfg = t.mag })
 hl("MiniIconsRed", { fg = g.red, ctermfg = t.red })
 hl("MiniIconsYellow", { fg = g.yellow, ctermfg = t.yellow })
@@ -185,13 +186,13 @@ hl("IBLWhitespace", { bg = g.bg, fg = g.dim1, ctermbg = t.bg, ctermfg = t.dim1, 
 hl("CmpItemAbbrDeprecated", { bg = g.bg, fg = g.br_black, ctermbg = t.bg, ctermfg = t.br_black, strikethrough = true })
 hl("CmpItemAbbrMatch", { bg = g.bg, fg = g.blue, ctermbg = t.bg, ctermfg = t.blue, bold = true })
 hl("CmpItemAbbrMatchFuzzy", { bg = g.bg, fg = g.blue, ctermbg = t.bg, ctermfg = t.blue, bold = true })
-hl("CmpItemKindVariable", { bg = g.bg, fg = g.br_white, ctermbg = t.bg, ctermfg = t.br_white })
+hl("CmpItemKindVariable", { bg = g.bg, fg = g.br_white, ctermbg = t.bg, ctermfg = t.br_white, bold = true })
 hl("CmpItemKindInterface", { bg = g.bg, fg = g.cyan, ctermbg = t.bg, ctermfg = t.cyan })
 hl("CmpItemKindText", { bg = g.bg, fg = g.fg, ctermbg = t.bg, ctermfg = t.fg })
-hl("CmpItemKindEnum", { bg = g.bg, fg = g.br_red, ctermbg = t.bg, ctermfg = t.br_red })
-hl("CmpItemKindFunction", { bg = g.bg, fg = g.cyan, ctermbg = t.bg, ctermfg = t.cyan })
-hl("CmpItemKindField", { bg = g.bg, fg = g.green, ctermbg = t.bg, ctermfg = t.green })
-hl("CmpItemKindSnippet", { bg = g.bg, fg = g.red, ctermbg = t.bg, ctermfg = t.red })
+hl("CmpItemKindEnum", { bg = g.bg, fg = g.orange, ctermbg = t.bg, ctermfg = t.orange })
+hl("CmpItemKindFunction", { bg = g.bg, fg = g.orange, ctermbg = t.bg, ctermfg = t.orange, bold = true })
+hl("CmpItemKindField", { bg = g.bg, fg = g.green, ctermbg = t.bg, ctermfg = t.green, bold = true })
+hl("CmpItemKindSnippet", { bg = g.bg, fg = g.red, ctermbg = t.bg, ctermfg = t.red, bold = true })
 hl("CmpItemKindMethod", { bg = g.bg, fg = g.mag, ctermbg = t.bg, ctermfg = t.mag })
 hl("CmpItemKindKeyword", { bg = g.bg, fg = g.mag, ctermbg = t.bg, ctermfg = t.mag, bold = true })
 hl("CmpItemKindProperty", { bg = g.bg, fg = g.yellow, ctermbg = t.bg, ctermfg = t.yellow })
@@ -213,7 +214,7 @@ hl("@constructor.lua", { fg = g.br_white, ctermfg = t.br_white })
 -- Obsidian
 hl("ObsidianTodo", { fg = g.br_white, ctermfg = t.br_white, bold = true })
 hl("ObsidianDone", { fg = g.br_blue, ctermfg = t.br_blue })
-hl("ObsidianRightArrow", { fg = g.br_red, ctermfg = t.br_red })
+hl("ObsidianRightArrow", { fg = g.orange, ctermfg = t.orange })
 hl("ObsidianTilde", { fg = g.mag, ctermfg = t.mag })
 hl("ObsidianImportant", { fg = g.red, ctermfg = t.red })
 hl("ObsidianBullet", { fg = g.br_blue, ctermfg = t.br_blue })
@@ -223,28 +224,24 @@ hl("ObsidianTag", { fg = g.br_blue, ctermfg = t.br_blue })
 hl("ObsidianBlockID", { fg = g.br_blue, ctermfg = t.br_blue })
 hl("ObsidianHighlightText", { fg = g.green, ctermfg = t.green })
 
+-- Markdown
 hl("MarkviewCode", { guibg = g.bg })
 hl("MarkviewCodeInfo", { guibg = g.bg, fg = g.dim })
 hl("MarkviewInlineCode", { bg = g.bg2, fg = g.fg })
-
 hl("MarkviewHeading1", { fg = "#d4b896", bold = true })
 hl("MarkviewHeading2", { fg = "#a59a84", bold = true })
 hl("MarkviewHeading3", { fg = "#7a7060" })
-
 hl("MarkviewTableBorder", { fg = g.dim })
 hl("MarkviewTableHeader", { fg = g.fg, bold = true })
 hl("MarkviewTableRow", { fg = g.fg })
 hl("MarkviewTableAlignLeft", { fg = g.dim })
 hl("MarkviewTableAlignRight", { fg = g.dim })
 hl("MarkviewTableAlignCenter", { fg = g.dim })
-
 hl("MarkviewBlockQuoteBorder", { fg = g.dim })
 hl("MarkviewBlockQuoteNote", { fg = "#7a9ec2" })
 hl("MarkviewBlockQuoteWarn", { fg = "#c2a97a" })
 hl("MarkviewBlockQuoteOk", { fg = "#7ac27a" })
 hl("MarkviewBlockQuoteSpecial", { fg = "#a97ac2" })
-
 hl("MarkviewGradient5", { fg = g.dim })
-
 hl("MarkviewCheckboxChecked", { fg = "#7ac27a" })
 hl("MarkviewCheckboxUnchecked", { fg = g.dim })
