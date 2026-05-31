@@ -62,14 +62,14 @@ require("lazy").setup({
   },
   performance = {
     disabled_plugins = {
-      -- "tutor",
-      -- "netrwPlugin",
+      "tutor",
+      "netrwPlugin",
       "gzip",
       -- "matchit",
       -- "matchparen",
-      -- "tarPlugin",
+      "tarPlugin",
       -- "tohtml",
-      -- "zipPlugin",
+      "zipPlugin",
     },
   },
   readme = {

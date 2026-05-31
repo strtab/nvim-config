@@ -126,7 +126,7 @@ return {
 						end
 					end),
 				}),
-				experimental = { ghost_text = true },
+				experimental = { ghost_text = false },
 
 				-- sources for autocompletion
 				sources = cmp.config.sources(default_cmp_sources),
