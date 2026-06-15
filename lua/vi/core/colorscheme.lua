@@ -1,7 +1,7 @@
 local g = {
 	bg = nil,
 	bg_alt = "#080808",
-	bg_alt2 = "#121212",
+	bg_alt2 = "#202020",
 	fg = "#a59a84",
 
 	dim1 = "#1c1c1c",
@@ -106,7 +106,7 @@ hl("Title", { fg = g.fg, ctermfg = t.fg })
 hl("String", { fg = g.green, ctermfg = t.green })
 hl("Comment", { fg = g.br_black, ctermfg = t.br_black, italic = true })
 hl("Operator", { fg = g.fg, ctermfg = t.fg })
-hl("Special", { fg = g.fg, ctermfg = t.fg })
+hl("Special", { fg = g.br_white, ctermfg = t.br_white })
 hl("Delimiter", { fg = g.orange, ctermfg = t.orange })
 hl("@variable", { fg = g.br_white, ctermfg = t.br_white })
 hl("Identifier", { fg = g.blue, ctermfg = t.blue })

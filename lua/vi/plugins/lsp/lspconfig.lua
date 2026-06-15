@@ -65,17 +65,26 @@ return {
 			end,
 		})
 
-		opts.desc = "Lsp status"
-		map("<leader>ls", ":LspInfo<CR>")
-
 		opts.desc = "Lsp install"
 		map("<leader>li", ":LspInstall<CR>")
 
 		opts.desc = "Lsp uninstall"
-		map("<leader>lu", ":LspUninstall<CR>")
+		map("<leader>lu", ":lsp uninstall<CR>")
 
 		opts.desc = "Lsp restart"
-		map("<leader>lr", ":LspRestart<CR>")
+		map("<leader>lr", ":lsp restart<CR>")
+
+		opts.desc = "Lsp enable"
+		map("<leader>le", ":lsp enable<CR>")
+
+		opts.desc = "Lsp disable"
+		map("<leader>ld", ":lsp disable<CR>")
+
+		opts.desc = "Lsp stop"
+		map("<leader>ls", ":lsp stop<CR>")
+
+		opts.desc = "Format current buffer"
+		map("<leader>lf", vim.lsp.buf.format)
 
 		-- LSP servers and clients are able to communicate to each other what features they support.
 		-- By default, neovim doesn't support everything that is in the LSP Specification.
