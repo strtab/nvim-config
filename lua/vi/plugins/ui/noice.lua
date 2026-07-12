@@ -1,17 +1,18 @@
 return {
   "folke/noice.nvim",
-  enabled = true,
+  enabled = false,
   event = "VeryLazy",
-  dependencies = { "MunifTanjim/nui.nvim" },
+  dependencies = {
+    "MunifTanjim/nui.nvim",
+  },
   opts = {
     presets = {
       bottom_search = true,
-      -- command_palette = true,
       long_message_to_split = true,
     },
     cmdline = {
       enabled = true,
-      view = "cmdline", -- mini, cmdline, cmdline_popup, confirm, hover
+      view = "cmdline",
       format = {
         cmdline = false,
         search_down = { icon = "/" },
@@ -35,11 +36,18 @@ return {
       cmdline_input = {
         border = { style = require("vi.core.ui").nui_border },
       },
+      notify = {
+        replace = false,
+        merge = false,
+      },
     },
-    notify = { enabled = true },
+    notify = {
+      enabled = true,
+      timeout = 3500,
+    },
     lsp = {
-      enabled = false,
-      progress = { enabled = false },
+      enabled = true,
+      progress = { enabled = true },
       hover = { enabled = false, silent = true },
       signature = { enabled = false },
     },

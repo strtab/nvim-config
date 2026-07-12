@@ -31,16 +31,17 @@ vim.opt.rtp:prepend(lazypath)
 vim.g.mapleader = " "
 vim.g.maplocalleader = "\\"
 
-vim.api.nvim_create_autocmd("VimEnter", {
-  callback = function()
-    require("vi.core.colorscheme")
-  end,
-})
+-- vim.api.nvim_create_autocmd("VimEnter", {
+--   callback = function()
+--     require("vi.core.colorscheme")
+--   end,
+-- })
 
 require("lazy").setup({
   spec = {
     { import = "vi.plugins" },
     { import = "vi.plugins.ui" },
+    { import = "vi.plugins.ai" },
     { import = "vi.plugins.lsp" },
     { import = "vi.plugins.git" },
     { import = "vi.plugins.notes" },
@@ -55,7 +56,7 @@ require("lazy").setup({
     notify = false,
   },
   install = {
-    colorscheme = { "default" },
+    colorscheme = { "kanagawa-paper" },
   },
   change_detection = {
     enabled = false,
@@ -65,10 +66,10 @@ require("lazy").setup({
       "tutor",
       "netrwPlugin",
       "gzip",
-      -- "matchit",
-      -- "matchparen",
+      "matchit",
+      "matchparen",
       "tarPlugin",
-      -- "tohtml",
+      "tohtml",
       "zipPlugin",
     },
   },

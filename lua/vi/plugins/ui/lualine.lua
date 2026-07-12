@@ -6,8 +6,8 @@ return {
       normal = {
         a = { fg = "#a59a84", bg = nil },
         b = { fg = "#8f8473", bg = nil },
-        c = { fg = "#8f8473", bg = nil },
-        x = { fg = "#8f8473", bg = nil },
+        c = { fg = "#727169", bg = nil },
+        x = { fg = "#727169", bg = nil },
         y = { fg = "#8f8473", bg = nil },
         z = { fg = "#a59a84", bg = nil },
       },
@@ -40,9 +40,14 @@ return {
       end
     end
 
+    require("lualine").hide({
+      place = { "statusline", "tabline", "winbar" }, -- The segment this change applies to.
+      unhide = false,                             -- whether to re-enable lualine again/
+    })
+
     require("lualine").setup({
       options = {
-        icons_enabled = false,
+        icons_enabled = true,
         theme = custom_theme,
 
         section_separators = { left = "", right = "" },
@@ -66,7 +71,7 @@ return {
           { "diff",        colored = false, update_in_insert = false },
           { "diagnostics", colored = false, update_in_insert = false },
         },
-        lualine_x = {},
+        lualine_x = { "lsp_status", "filetype" },
         lualine_y = { "progress" },
         lualine_z = { "location" },
       },

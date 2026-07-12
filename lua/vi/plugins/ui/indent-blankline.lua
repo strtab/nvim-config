@@ -1,12 +1,11 @@
 return {
 	"lukas-reineke/indent-blankline.nvim",
 	event = { "BufReadPre", "BufNewFile" },
-	-- cond = vim.env.TERM ~= "linux",
 	config = function()
 		require("ibl").setup({
-			indent = { char = "│" },
+      debounce = 100,
 			exclude = {
-				filetypes = { "dashboard", "markdown", "help" },
+				filetypes = { "dashboard", "markdown", "help", "text" },
 			},
 			whitespace = {
 				highlight = { "IblWhitespace" },
