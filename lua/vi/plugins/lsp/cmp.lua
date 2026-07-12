@@ -46,11 +46,8 @@ return {
         { name = "buffer" },
         { name = "path" },
         { name = "spell" },
+        { name = "copilot" },
       }
-
-      if package.loaded["nvim-highlight-colors"] then
-        table.insert(default_cmp_sources, 1, { name = "nvim-highlight-colors" })
-      end
 
       local bufIsBig = function(bufnr)
         local max_filesize = 100 * 1024 -- 100 KB
@@ -140,12 +137,12 @@ return {
           }),
         },
 
-        -- window = {
-        -- 	completion = cmp.config.window.bordered(),
-        -- 	documentation = cmp.config.window.bordered({
-        -- 		winhighlight = "Normal:Pmenu,FloatBorder:Pmenu,CursorLine:PmenuSel,Search:None",
-        -- 	}),
-        -- },
+        window = {
+          completion = {
+            scrollbar = true,
+            max_height = 10,
+          },
+        },
       })
     end,
   },
