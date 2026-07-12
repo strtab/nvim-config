@@ -1,5 +1,6 @@
 return {
   "epwalsh/obsidian.nvim",
+  enable = true,
   version = "*", -- recommended, use latest release instead of latest commit
   dependencies = { "nvim-lua/plenary.nvim" },
   lazy = true,
@@ -148,7 +149,7 @@ return {
       ui = { enable = false },
 
       vim.keymap.set("n", "<leader>on", "<cmd>ObsidianNew<CR>", { desc = "New" }),
-      vim.keymap.set("n", "<leader>ob", "<cmd>ObsidianBacklinks<CR>", { desc = "Blanklinks" }),
+      vim.keymap.set("n", "<leader>ob", "<cmd>ObsidianBacklinks<CR>", { desc = "Backlinks" }),
       vim.keymap.set("n", "<leader>fo", "<cmd>ObsidianSearch<CR>", { desc = "Obsidian" }),
       vim.keymap.set("n", "<leader>ot", "<cmd>ObsidianTemplate<CR>", { desc = "Insert Template" }),
     })
