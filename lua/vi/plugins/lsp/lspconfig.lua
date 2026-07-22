@@ -150,19 +150,16 @@ return {
 			capabilities = capabilities,
 			settings = {
 				["nil"] = {
-					nix = {
-						flake = {
+					nix = { 
+            flake = {
 							autoArchive = false,
 							autoEvalInputs = false,
 						},
-					},
-					formatting = {
-						command = { "nixfmt" },
 					},
 				},
 			},
 		})
 
-		vim.lsp.enable({ "qmlls", "lua_ls", "nil_ls" })
+    vim.lsp.enable({ "gopls", "qmlls", "bashls", "lua_ls", "nil_ls", "yamlls"})
 	end,
 }

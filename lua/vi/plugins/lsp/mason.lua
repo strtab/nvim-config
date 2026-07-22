@@ -22,7 +22,7 @@ return {
       require("mason-tool-installer").setup({
         ensure_installed = {
           "prettier",
-          "stylua",
+          "shfmt",
         },
       })
     end,
@@ -33,10 +33,12 @@ return {
     config = function()
       require("mason-lspconfig").setup({
         ensure_installed = {
-          "lua_ls",
-          "yamlls",
-          "bashls",
-          "gopls",
+          -- "lua_ls",
+          -- "yamlls",
+          -- "bashls",
+          -- "gopls",
+          "pylsp",
+          "dockerls",
         },
       })
     end,
