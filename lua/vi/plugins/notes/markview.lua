@@ -1,6 +1,6 @@
 return {
   "OXY2DEV/markview.nvim",
-  enable = false,
+  enable = true,
   lazy = false,
   ft = { "markdown", "markdown_inline", "comment", "html", "latex", "yaml" },
   config = function()

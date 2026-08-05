@@ -3,16 +3,9 @@ return {
   enable = true,
   version = "*", -- recommended, use latest release instead of latest commit
   dependencies = { "nvim-lua/plenary.nvim" },
-  lazy = true,
-  ft = "markdown",
-  -- Replace the above line with this if you only want to load obsidian.nvim for markdown files in your vault:
-  -- event = {
-  --   -- If you want to use the home shortcut '~' here you need to call 'vim.fn.expand'.
-  --   -- E.g. "BufReadPre " .. vim.fn.expand "~" .. "/my-vault/*.md"
-  --   -- refer to `:h file-pattern` for more examples
-  --   "BufReadPre path/to/my-vault/*.md",
-  --   "BufNewFile path/to/my-vault/*.md",
-  -- },
+  cond = function ()
+    return vim.fn.getcwd() == vim.fn.expand("~/.obsidian/notes")
+  end,
   config = function()
     require("obsidian").setup({
       dir = "~/.obsidian",
@@ -32,7 +25,7 @@ return {
         -- Optional, default tags to add to each new daily note created.
         default_tags = { "daily-notes" },
         -- Optional, if you want to automatically insert a template from your template directory like 'daily.md'
-        template = nil,
+        template = "Default.md",
       },
 
       -- Optional, completion of wiki links, local markdown links, and tags using nvim-cmp.
@@ -64,27 +57,6 @@ return {
       -- `true` indicates that you don't want obsidian.nvim to manage frontmatter.
       disable_frontmatter = false,
 
-      -- Optional, alternatively you can customize the frontmatter data.
-      ---@return table
-      note_frontmatter_func = function(note)
-        -- Add the title of the note as an alias.
-        if note.title then
-          note:add_alias(note.title)
-        end
-
-        local out = { id = note.id, aliases = note.aliases, tags = note.tags }
-
-        -- `note.metadata` contains any manually added fields in the frontmatter.
-        -- So here we just make sure those fields are kept in the frontmatter.
-        if note.metadata ~= nil and not vim.tbl_isempty(note.metadata) then
-          for k, v in pairs(note.metadata) do
-            out[k] = v
-          end
-        end
-
-        return out
-      end,
-
       -- Optional, for templates (see below).
       templates = {
         folder = "templates",
@@ -98,14 +70,14 @@ return {
       -- URL it will be ignored but you can customize this behavior here.
       ---@param url string
       follow_url_func = function(url)
-        vim.fn.jobstart({ "xdg-open", url }) -- linux
+        vim.fn.jobstart({ "xdg-open", url })
       end,
 
       -- Optional, by default when you use `:ObsidianFollowLink` on a link to an image
       -- file it will be ignored but you can customize this behavior here.
       ---@param img string
       follow_img_func = function(img)
-        vim.fn.jobstart({ "xdg-open", img }) -- linux
+        vim.fn.jobstart({ "xdg-open", img })
       end,
 
       -- Optional, set to true if you use the Obsidian Advanced URI plugin.
@@ -113,7 +85,6 @@ return {
       use_advanced_uri = false,
 
       picker = {
-        -- Set your preferred picker. Can be one of 'telescope.nvim', 'fzf-lua', or 'mini.pick'.
         name = "telescope.nvim",
         -- Optional, configure key mappings for the picker. These are the defaults.
         -- Not all pickers support all mappings.
@@ -149,9 +120,12 @@ return {
       ui = { enable = false },
 
       vim.keymap.set("n", "<leader>on", "<cmd>ObsidianNew<CR>", { desc = "New" }),
+      vim.keymap.set("n", "<leader>or", "<cmd>ObsidianRename<CR>", { desc = "Rename file" }),
       vim.keymap.set("n", "<leader>ob", "<cmd>ObsidianBacklinks<CR>", { desc = "Backlinks" }),
+      vim.keymap.set("n", "<leader>ot", "<cmd>ObsidianTemplate<CR>", { desc = "Insert template" }),
+
       vim.keymap.set("n", "<leader>fo", "<cmd>ObsidianSearch<CR>", { desc = "Obsidian" }),
-      vim.keymap.set("n", "<leader>ot", "<cmd>ObsidianTemplate<CR>", { desc = "Insert Template" }),
+      vim.keymap.set("n", "<leader>ft", "<cmd>ObsidianTags<CR>", { desc = "Obsidian tags" }),
     })
   end,
 }
