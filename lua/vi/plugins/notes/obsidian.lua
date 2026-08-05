@@ -121,6 +121,7 @@ return {
 
       vim.keymap.set("n", "<leader>on", "<cmd>ObsidianNew<CR>", { desc = "New" }),
       vim.keymap.set("n", "<leader>or", "<cmd>ObsidianRename<CR>", { desc = "Rename file" }),
+      vim.keymap.set("n", "<F2>", "<cmd>ObsidianRename<CR>", { desc = "Rename file" }),
       vim.keymap.set("n", "<leader>ob", "<cmd>ObsidianBacklinks<CR>", { desc = "Backlinks" }),
       vim.keymap.set("n", "<leader>ot", "<cmd>ObsidianTemplate<CR>", { desc = "Insert template" }),
 
