@@ -11,11 +11,7 @@ return {
 				highlight = { "IblWhitespace" },
 				remove_blankline_trail = true,
 			},
-			scope = {
-				enabled = true,
-				show_start = false,
-				show_end = false,
-			},
+			scope = { enabled = false, },
 		})
 	end,
 	vim.keymap.set("n", "<leader>ui", "<cmd>IBLToggle<CR>", { silent = true, desc = "Toggle indent blankline" }),
