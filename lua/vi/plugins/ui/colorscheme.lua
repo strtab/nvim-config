@@ -26,13 +26,13 @@ return {
           -- style for comments
           comment = { italic = true },
           -- style for functions
-          functions = { italic = false },
+          functions = { italic = true },
           -- style for keywords
-          keyword = { italic = false, bold = false },
+          keyword = { italic = true, bold = false },
           -- style for statements
-          statement = { italic = false, bold = false },
+          statement = { italic = true, bold = false },
           -- style for types
-          type = { italic = false },
+          type = { italic = true },
         },
         -- override default palette and theme colors
         colors = {
