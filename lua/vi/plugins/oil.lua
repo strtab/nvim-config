@@ -58,7 +58,7 @@ return {
           },
         },
       })
-      require("vim.keymap").set("n", "<leader>e", "<cmd>Oil<CR>", { desc = "Files" })
+      require("vim.keymap").set("n", "<leader>e", "<cmd>Oil<CR>", { desc = "Explore" })
     end,
   },
 }
