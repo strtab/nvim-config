@@ -1,5 +1,9 @@
 return {
   {
+    "casedami/neomodern.nvim",
+    enabled = false,
+  },
+  {
     "thesimonho/kanagawa-paper.nvim",
     lazy = false,
     priority = 1000,
@@ -12,15 +16,11 @@ return {
         -- highlight background for the left gutter
         gutter = false,
         -- background for diagnostic virtual text
-        diag_background = true,
+        diag_background = false,
         -- dim inactive windows. Disabled when transparent
         dim_inactive = false,
         -- set colors for terminal buffers
         terminal_colors = false,
-        -- cache highlights and colors for faster startup.
-        -- see Cache section for more details.
-        cache = false,
-        compile = true,
 
         styles = {
           -- style for comments
@@ -46,18 +46,28 @@ return {
             ink = {
               ui = {
                 fg = "#bcb7aa",
-                bg = "#000000",
-                bg_statusline = "#000000",
+                bg = "#050505",
                 indent = "#232323",
+                bg_statusline = "#16161d",
+                pmenu = {
+                  bg = "#16161d",
+                },
+                tabline = {
+                  bg = "#16161d",
+                  fg_inactive = "#727169",
+                  fg_selected = "#a59a84",
+                },
+                float = {
+                  bg = "#0f0f15",
+                  bg_border = "#0f0f15",
+                  fg = "#bcb7aa",
+                },
               },
-              tab = {
-                bg = "#000000",
-              }
             },
             canvas = {
               ui = {
-                bg = "#fff9ee",
-                bg_statusline = "#fff9ee",
+                bg = "#ffffff",
+                bg_statusline = "#ffffff",
                 bg_float = "#d2cc9c",
                 float = "#d2cc9c",
                 bg_dim = "#e2dcac",
