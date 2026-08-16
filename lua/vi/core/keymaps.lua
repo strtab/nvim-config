@@ -6,6 +6,14 @@ local cmd = vim.cmd
 keymap.set("n", "<leader>n", ":nohl<CR>", { silent = true, desc = "Clear search" })
 keymap.set("n", "<leader>e", ":Explore<CR>", { silent = true, desc = "Explore" })
 
+vim.keymap.set({ "n", "x" }, "j", function()
+  return vim.v.count == 0 and "gj" or "j"
+end, { expr = true, silent = true })
+
+vim.keymap.set({ "n", "x" }, "k", function()
+  return vim.v.count == 0 and "gk" or "k"
+end, { expr = true, silent = true })
+
 -- Term
 -- keymap.set("t", "<Esc>", [[<C-\><C-n>]], { noremap = true, desc = "Exit from terminal mode" })
 keymap.set("n", "<leader>/", function()
